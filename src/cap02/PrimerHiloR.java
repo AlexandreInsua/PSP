@@ -19,5 +19,7 @@ public class PrimerHiloR implements Runnable {
 		while (true) {
 			new Thread(p).start();
 		}
+		
+		
 	}
 }
