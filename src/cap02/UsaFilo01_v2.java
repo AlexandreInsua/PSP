@@ -15,3 +15,17 @@ public class UsaFilo01_v2 {
 	}
 
 }
+
+class Fio implements Runnable{
+
+	public Fio(int i) {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
