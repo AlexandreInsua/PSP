@@ -32,6 +32,6 @@ public class Exemplo01_fios extends Thread {
 			h.start();
 			
 		}
-		System.out.println("Crados tres hilos");
+		System.out.println("Creados tres fíos");
 	}
 }
