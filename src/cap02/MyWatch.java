@@ -31,11 +31,14 @@ public class MyWatch extends Applet implements Runnable {
 			horaActual =sdf.format(cal.getTime());
 			repaint();
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 			}
 		}
 	}
+
+	public void stop() {
+	hilo=null;}
 
 	@Override
 	public void paint(Graphics g) {
@@ -44,6 +47,4 @@ public class MyWatch extends Applet implements Runnable {
 		g.setFont(fuente);
 		g.drawString(horaActual, 20, 50);
 	}
-	public void stop() {
-	hilo=null;}
 }
