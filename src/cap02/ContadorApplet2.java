@@ -10,75 +10,101 @@ import java.awt.event.ActionListener;
 
 public class ContadorApplet2 extends Applet implements ActionListener {
 
-	Contador h1 = new Contador();
-	// HiloContador h2 = new HiloContador();
-	private Thread h = null; // sempre iniciado a null.
-	long CONTADOR = 0;
-	private boolean parar;
-	private Font fuente;
-	private Button b1, b2;
+	// INNER CLASS
+	class Contador extends Thread {
+		private boolean parar;
+		private String name;
+		private int coordX;
+		private int coordY;
+		private int CONTADOR;
+		Graphics g;
 
-	@Override
-	public void start() {
+		public Contador(String name, int coordX, int coordY, int CONTADOR, Graphics g) {
+			this.name = name;
+			this.coordX = coordX;
+			this.coordY = coordY;
+			this.CONTADOR = CONTADOR;
+			this.g = g;
+			start();
+		}
+
+		@Override
+		public void run() {
+			g.drawString(name, coordY, coordX);
+			while (true) {
+				int i = 0;
+				g.drawString(Integer.toString(CONTADOR), coordY + 100 + i, coordX);
+				CONTADOR++;
+				i += 10;
+
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException ie) {
+					System.out.println(ie.toString());
+				}
+
+			}
+		}
 	}
+
+	// private boolean parar;
+	private Font fuente = new Font("Verdana", 5, 16);;
+	private Button b1, b2;
+	private Graphics g;
+	Contador c1, c2;
+
+	Thread h = null;
 
 	@Override
 	public void init() {
+		setSize(300, 200);
 		setBackground(Color.white);
-		add(b1 = new Button(" Finalizar Fío 1 "));
-		b1.addActionListener(this);
-		add(b2 = new Button(" Finalizar Fío 2 "));
-		b2.addActionListener(this);
+		// TODO arranxar isto
+		add(c1=new Contador("Contador 1", 50, 20, 0, g));
+		add(c2= new Contador("Contador 2", 80, 20, 0, g));
 
-		fuente = new Font("Verdana", 13, 26);
+		add(b1 = new Button(" Finalizar 1 "));
+		b1.addActionListener(this);
+		add(b2 = new Button(" Finalizar 2 "));
+		b2.addActionListener(this);
 
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		g.clearRect(0, 0, 400, 400);
 		g.setFont(fuente);
-		g.drawString("Fio 1: " + Long.toString((long) CONTADOR), 40, 100);
-		// g.drawString("Fio 2: " +Long.toString((long) CONTADOR), 40, 130);
+		
+		
+		while (c1.isAlive() || c2.isAlive())
+			g.drawString("Funcionado", 150, 180);
+
 	}
 
+	public void repaint() {
+	}
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		b1.setLabel("Finalizado 1");
 		if (e.getSource() == b1) {
-			// o fíon non é nulo e é o que está en funcionamento
-			if (h != null && h.isAlive()) {
-
-			} else {
-				h = new Contador();
-				h.start();
-			}
+			b1.setLabel("Parado 1");
+			h.stop();
 		} else if (e.getSource() == b2) {
-			parar = true;
+			b2.setLabel("Parado 2");
+			h.stop();
 		}
 	}
 
-	@Override
+	/*
+	 * @Override public void actionPerformed(ActionEvent e) {
+	 * b1.setLabel("Finalizado 1"); if (e.getSource() == b1) { // o fíon non é nulo
+	 * e é o que está en funcionamento if (h != null && h.isAlive()) {
+	 * 
+	 * } else { h = new Contador(); h.start(); } } else if (e.getSource() == b2) {
+	 * parar = true; } }
+	 */
+
 	public void stop() {
-		h = null;
-	}
 
+	}
 }
-	class Contador extends Thread {
-		public void run() {
-			parar = false;
-			Thread hiloActual = Thread.currentThread();
-			h.start();
-			while (h == hiloActual && !parar) {
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				repaint();
-				CONTADOR++;
-			}
-
-		}
-	}
-
