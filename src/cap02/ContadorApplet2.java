@@ -12,69 +12,64 @@ public class ContadorApplet2 extends Applet implements ActionListener {
 
 	// INNER CLASS
 	class Contador extends Thread {
-		private boolean parar;
-		private String name;
-		private int coordX;
-		private int coordY;
-		private int CONTADOR;
-		Graphics g;
 
-		public Contador(String name, int coordX, int coordY, int CONTADOR, Graphics g) {
+		private String name;
+
+		private int CONTADOR;
+
+		public Contador(String name) {
 			this.name = name;
-			this.coordX = coordX;
-			this.coordY = coordY;
-			this.CONTADOR = CONTADOR;
-			this.g = g;
+
+			this.CONTADOR = 0;
+
 			start();
+		}
+
+		public int getContador() {
+			return CONTADOR;
 		}
 
 		@Override
 		public void run() {
-			g.drawString(name, coordY, coordX);
 			while (true) {
-				int i = 0;
-				g.drawString(Integer.toString(CONTADOR), coordY + 100 + i, coordX);
-				CONTADOR++;
-				i += 10;
-
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 				} catch (InterruptedException ie) {
-					System.out.println(ie.toString());
+					System.out.println("Excepción capturada: " + ie.toString());
 				}
-
+				CONTADOR++;
 			}
 		}
 	}
 
-	// private boolean parar;
-	private Font fuente = new Font("Verdana", 5, 16);;
+	Contador c1, c2;
 	private Button b1, b2;
 	private Graphics g;
-	Contador c1, c2;
-
-	Thread h = null;
+	private Font fuente = new Font("Verdana", 5, 16);;
 
 	@Override
 	public void init() {
 		setSize(300, 200);
 		setBackground(Color.white);
-		// TODO arranxar isto
-		add(c1=new Contador("Contador 1", 50, 20, 0, g));
-		add(c2= new Contador("Contador 2", 80, 20, 0, g));
 
 		add(b1 = new Button(" Finalizar 1 "));
 		b1.addActionListener(this);
 		add(b2 = new Button(" Finalizar 2 "));
 		b2.addActionListener(this);
+	}
+
+	public void start() {
+		Contador c1 = new Contador("Contador 1");
+		Contador c2 = new Contador("Contador 2");
 
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		g.setFont(fuente);
-		
-		
+		g.drawString(Integer.toString(c1.getContador()), 50, 20);
+		g.drawString(Integer.toString(c1.getContador()), 80, 20);
+
 		while (c1.isAlive() || c2.isAlive())
 			g.drawString("Funcionado", 150, 180);
 
@@ -88,13 +83,17 @@ public class ContadorApplet2 extends Applet implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
 			b1.setLabel("Parado 1");
-			h.stop();
+			c1.stop();
 		} else if (e.getSource() == b2) {
 			b2.setLabel("Parado 2");
-			h.stop();
+			c2.stop();
 		}
 	}
 
+	public void stop() {
+		c1 = null;
+		c2 = null;
+	}
 	/*
 	 * @Override public void actionPerformed(ActionEvent e) {
 	 * b1.setLabel("Finalizado 1"); if (e.getSource() == b1) { // o fíon non é nulo
@@ -104,7 +103,5 @@ public class ContadorApplet2 extends Applet implements ActionListener {
 	 * parar = true; } }
 	 */
 
-	public void stop() {
-
-	}
+	
 }
