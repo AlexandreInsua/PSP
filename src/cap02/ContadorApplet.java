@@ -38,7 +38,7 @@ public class ContadorApplet extends Applet implements Runnable, ActionListener {
 		Thread hiloActual = Thread.currentThread();
 		while (h == hiloActual && !parar) {
 			try {
-				Thread.sleep(1);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
