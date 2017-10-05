@@ -1,9 +1,10 @@
 package cap02;
 
 /*
- * Método obsoleto
+ * Método obsoleto.
  */
-public class exemplo_1 extends Thread {
+
+public class Exemplo_1b extends Thread {
 	private SuspendRequestor suspender = new SuspendRequestor();
 
 	public void requestSuspend() {

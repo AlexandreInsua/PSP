@@ -8,8 +8,10 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ContadorApplet extends Applet implements Runnable, ActionListener {
+public class Actividade02_ContadorApplet extends Applet implements Runnable, ActionListener {
 
+	
+	
 	private Thread h = null; // sempre iniciado a null.
 	long CONTADOR = 0;
 	private boolean parar;
