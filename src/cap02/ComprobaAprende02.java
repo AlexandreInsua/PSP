@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class Actividade03_Applet2_ extends Applet implements ActionListener {
+public class ComprobaAprende02 extends Applet implements ActionListener {
 
 	
 	class HiloContador extends Thread {
