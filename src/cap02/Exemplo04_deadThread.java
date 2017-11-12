@@ -1,6 +1,6 @@
 package cap02;
 
-public class Exemplo04_deathThread extends Thread {
+public class Exemplo04_deadThread extends Thread {
 	private boolean stopThread = false;
 
 	public void stopThread() {
@@ -18,7 +18,7 @@ public class Exemplo04_deathThread extends Thread {
 	}
 
 	public static void main(String[] args) {
-		Exemplo04_deathThread t = new Exemplo04_deathThread();
+		Exemplo04_deadThread t = new Exemplo04_deadThread();
 		t.start();
 		for (int i = 0; i < 100000; i++) {
 			

@@ -8,6 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MyWatch extends Applet implements Runnable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8524085990844469407L;
 	private Thread hilo = null;
 	private Font fuente;
 	private String horaActual="";
