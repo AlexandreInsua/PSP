@@ -3,17 +3,21 @@ package cap02;
 /* 
  * Exemplo que implementa a interface Runnable
  */
+
 public class Exemplo03_Runnable {
 	public static void main(String[] args) {
-		Fio3 applet = new Fio3(10);
-		new Thread(applet).start();
+		// instancia o fio
+		Fio f = new Fio(10);
+		// inicia o fio tendo en conta que implementa Runnable
+		new Thread(f).start();
 	}
 }
 
-class Fio3 implements Runnable {
+class Fio implements Runnable {
 	private int x;
-
-	Fio3(int x) {
+	
+// construtor recibe un contador 
+	Fio(int x) {
 		this.x = x;
 	}
 

@@ -2,7 +2,7 @@ package cap02;
 
 public class Exemplo_01_fios {
 
-	// Main para instarciar os fios e correlos
+	// Main para instanciar os fios e correlos
 	public static void main(String[] args) {
 		// Reserva espazo en memorio
 		FioEx1 h = null;

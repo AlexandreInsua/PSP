@@ -9,21 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class Actividade03_ContadorApplet2 extends Applet implements ActionListener {
+public class Actividade02_2_ContadorApplet2 extends Applet implements ActionListener {
 
 	// INNER CLASS
-	class Contador extends Thread {
+	class FioContador extends Thread {
 		// Atributos
 		private int contador;
 
 		// Construtor
-		public Contador(int c) {
+		public FioContador(int c) {
 			this.contador = c;
 
 		}
 
 		@Override
 		public void run() {
+
 			while (true) {
 				try {
 					Thread.sleep(1000);
@@ -42,13 +43,11 @@ public class Actividade03_ContadorApplet2 extends Applet implements ActionListen
 	} // fin de INNER CLASS
 
 	// Referencia aos dous fíos contadores
-	Contador c1, c2;
+	private FioContador c1, c2;
 
 	// Referencia aos dous botóns do applet
+	private Font fonte;
 	private Button b1, b2;
-
-	// Fonde do applet
-	private Font fuente;
 
 	// Como se inicia o Applet
 	@Override
@@ -56,7 +55,7 @@ public class Actividade03_ContadorApplet2 extends Applet implements ActionListen
 		// Cor de fondo
 		setBackground(Color.yellow);
 		// Fonte
-		fuente = new Font("Verdana", Font.BOLD, 26);
+		fonte = new Font("Verdana", Font.BOLD, 26);
 		// Botón 1º
 		add(b1 = new Button(" Finalizar contador 1 "));
 		// e o seu listener
@@ -69,8 +68,8 @@ public class Actividade03_ContadorApplet2 extends Applet implements ActionListen
 
 	// Cando empeza o aplet, empezan os fios
 	public void start() {
-		c1 = new Contador(12);
-		c2 = new Contador(26);
+		c1 = new FioContador(12);
+		c2 = new FioContador(26);
 		c1.start();
 		c2.start();
 
@@ -79,15 +78,10 @@ public class Actividade03_ContadorApplet2 extends Applet implements ActionListen
 	// método que pinta no applet
 	@Override
 	public void paint(Graphics g) {
-		g.clearRect(0, 0, 400, 400);
-		g.setFont(fuente);
-		g.drawString(Integer.toString(c1.getContador()), 80, 100);
-		g.drawString(Integer.toString(c1.getContador()), 80, 150);
-
-		// liñas de probas
-		while (c1.isAlive() || c2.isAlive())
-			g.drawString("Funcionado", 150, 180);
-
+		g.clearRect(0, 0, 1000, 400);
+		g.setFont(fonte);
+		g.drawString("Fio 1: " + Integer.toString(c1.getContador()), 40, 100);
+		g.drawString("Fio 2: " + Integer.toString(c1.getContador()), 40, 150);
 	}
 
 	// Listerner
@@ -96,11 +90,11 @@ public class Actividade03_ContadorApplet2 extends Applet implements ActionListen
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
 			c1.stop();
-			b1.setLabel("Parado 1");
+			b1.setLabel("Parado fio 1");
 
 		} else if (e.getSource() == b2) {
 			c2.stop();
-			b2.setLabel("Parado 2");
+			b2.setLabel("Parado fio 2");
 
 		}
 	}
