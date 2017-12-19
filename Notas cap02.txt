@@ -1,0 +1,95 @@
+﻿
+1. INTRO
+	Proceso - é unha entidade pesada.
+	Fío		- é unha entidade lixeira que convive con outros e dependen dun proceso.
+	Úsanse fíos para realizar programas concurrentes.
+
+2. FÍOS
+	Un fío (Thread) e unha secuencia de código que necesita un proceso pai para executarse.
+
+3. 	CLASES
+	Usase a extensión de Thread ou a implementación de Runnable tendo en conta que Java non hai herdanza múltiple, polo que se a clase onde se coloca un threat xa herda de outra deberemos usar .
+	notify() notifyAll  só poden ser invocados en métodos ou fragmentos de códigos sincronizados.
+
+	cando de herda de Thread hai que implementar o método 
+	public void run();
+	para executalo precisamos a invocación de start(); que chama a run():
+
+3.1. Clase  Thread
+	Un fío pode estender a clase Thread.
+
+	Métodos
+	-------
+	run()			-> implementa o conxunto das accións que debe realizar o fio
+	start()			-> inicia un fio
+	stop() X 		-> finaliza un fío de forma non segura
+	isAlive()		-> comproba se o fío esta vivo.
+	sleep()			-> interrompe a execución do fío durante o tempo que se lle pase como argumento
+	getId()			-> devolve o identificador do fío
+	yield()			-> para o fío actual temporalmente e permite que os outros se executen.
+	getName()		-> devolve o nome do fío
+	setName()		-> establece o nome do fío
+	getPriority() 	-> devolve a prioridade do fío
+	setPriority() 	-> establece a prioridade do fío
+	interrupt()		-> interrompe o fío
+	interrupted()	-> interrompe o fío
+	currentThread()	-> devolve o fío actual
+	isDaemon()		-> devolve se o fío actual é un daemon
+	setDaemon()		-> establece o fío actual como daemon
+
+3.2. Inteface Runnable
+	Proporciona un único método run(). O fío é instanciado e executado coa sentenza Thread(fio).start();
+
+4. ESTADOS DUN FÍO
+	New 		-> cando un fío está instanciado pero non comezou a rodar o run()
+	Runnable 	-> cando cando se invocou o start()
+	Dead		-> cando finaliza a súa execución, lanzou unha excepción ou se executou o stop()
+	Blocked		-> cando se chama a sleep(), agarda por unha I/O, chama a wait(), opera cun obxecto bloqueado, 
+					ou se chamou a suspend()
+				Sae del cando despois do sleep(), se completa a I/O, se chamou a notify() ou notifyAll(),
+				a resume()
+				stop(), suspend() e resume() están deprecados.
+
+5. XESTIÓN DE FÍOS
+5.1.  Crear e arrincar fios
+	Estender de Thread: 	
+		Thread fio = new Thread();
+	Implementar Runnable (Fio implementa Runnable)
+		Fio fio = new Fio().start();
+		new Thread(fio).start();
+
+5.2. Suspender un fío
+	- con sleep()
+	- con suspend() ou resume() X deprecados
+	- Con SuspendRequestor (páxs. 16 e 17)
+
+5.3. Parar un fío
+	- con stop() 	X deprecado
+	- con interrupted() cando o fío está bloqueado por slee() ou wait() ou lanza unha excepción
+	- con join() agarda a finalización doutros fíos
+
+6. XESTIÓN DE PRIORIDADE
+		setPriority() e getPriority()
+	Prioridade é un enteiro entre 1 e 10. Hai tres constantes predefinidas.
+	O método con máis prioridade segue a executarse ata que:
+		- cede o control con yield(), que devolve o control ao plafinicador de procesos.
+		- deixsa de estar Runnable
+		- un fio de maior prioridade pasa a estar Runnable
+
+7. COMUNICACIÓN E SINCRONNIZACIÓN DE FÍOS
+	Os fíos comunícanse entre eles a través dun obxecto partillado.
+	Engadimos a palabra synchronized na parte do código que queremos que se execute atomicamente,
+	pregúntalle ao obxecto se esta bloqueado por outro fío.
+
+7. O modelo produtor-consumidor
+	É un modelo que resove os problemas que so poden dar:
+	a) o produtor produza moi rápido polo que o consumidor salta un dato, 
+ 	b) o consumidor consuma moi rápido polo que consume o mesmo dato varias veces, 
+ 		ou no recoller ningún e romper a aplicación.
+
+ 	Consta de
+ 		Produtor extends Thread
+ 		Consumidor extends Thread
+ 		Obxecto (Monitor) cos métodos sincronizados.
+
+ 		Para a coordinación úsade wait(), notify(), notifyAll() e os métodos sincronizados do monitor

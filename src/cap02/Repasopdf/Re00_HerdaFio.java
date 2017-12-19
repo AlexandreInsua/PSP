@@ -1,10 +1,10 @@
 package cap02.Repasopdf;
 
-public class HeredaHilo extends Thread {
+public class Re00_HerdaFio extends Thread {
 
 	String imprimir = "Bitelchús";
 
-	public HeredaHilo(String impr) {
+	public Re00_HerdaFio(String impr) {
 		this.imprimir = impr;
 	}
 

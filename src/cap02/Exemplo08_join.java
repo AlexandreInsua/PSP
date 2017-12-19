@@ -1,8 +1,9 @@
 package cap02;
 
 /*
- * Método join() - unirse, que fai que o fio que fai a chama agarde pola finalición dos outros fíos.
- * Neste caso o main agarda pola finalización dos outros
+ * Método join() - unirse, que fai que o fio que fai a chama agarde pola finalición
+ * dos outros fíos.
+ * Neste caso o main agarda pola finalización dos outros.
  */
 public class Exemplo08_join extends Thread {
 	private int n;
