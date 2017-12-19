@@ -1,9 +1,10 @@
 package cap02;
 
-/* 
+/*  
+ * Método obsoleto.
  * Suspender un fio de maneira segura
  */
-public class Exemplo06_suspenRequestor extends Thread {
+public class Exemplo06_suspendRequestor extends Thread {
 	private SuspendRequestor suspender = new SuspendRequestor();
 
 	public void requestSuspend() {
@@ -40,4 +41,3 @@ public class Exemplo06_suspenRequestor extends Thread {
 		}
 	}
 }
-

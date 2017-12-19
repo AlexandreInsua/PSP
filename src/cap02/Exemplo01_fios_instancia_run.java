@@ -1,6 +1,6 @@
 package cap02;
 
-public class Exemplo_01_fios {
+public class Exemplo01_fios_instancia_run {
 
 	// Main para instanciar os fios e correlos
 	public static void main(String[] args) {

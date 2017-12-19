@@ -1,6 +1,9 @@
 package cap02;
 
-public class Exemplo05_prioridade  {
+/*
+ * Exemplo que demostra o uso das prioridade. O de maior prioridade devólve un número maior
+ */
+public class Exemplo09_prioridade {
 	public static void main(String[] args) {
 		ExemploPrioridade fio1 = new ExemploPrioridade();
 		ExemploPrioridade fio2 = new ExemploPrioridade();
@@ -15,7 +18,7 @@ public class Exemplo05_prioridade  {
 		fio3.start();
 
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(100);
 		} catch (Exception e) {
 
 		}
@@ -30,19 +33,23 @@ public class Exemplo05_prioridade  {
 	}
 }
 
-class ExemploPrioridade extends Thread{
+class ExemploPrioridade extends Thread {
+	// contador
 	private int c = 0;
+	// variable para deter o fío de maneira seugra
 	private boolean stopFio = false;
-	
-	public int getContador(){
+
+	public int getContador() {
 		return c;
 	}
-	
-	public void pararFio(){
+
+	public void pararFio() {
 		stopFio = true;
 	}
-	
+
 	public void run(){
-		while(!stopFio) c++;
+		while(!stopFio) {
+			c++;
+		}
 	}
 }

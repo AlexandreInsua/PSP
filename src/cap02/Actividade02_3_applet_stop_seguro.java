@@ -8,8 +8,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-@SuppressWarnings("serial")
-public class Actividade02_2_ContadorApplet2 extends Applet implements ActionListener {
+public class Actividade02_3_applet_stop_seguro extends Applet implements ActionListener {
 
 	// INNER CLASS
 	class FioContador extends Thread {
@@ -27,7 +26,7 @@ public class Actividade02_2_ContadorApplet2 extends Applet implements ActionList
 
 			while (true) {
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException ie) {
 					System.out.println("Excepción capturada: " + ie.toString());
 				}
@@ -81,7 +80,7 @@ public class Actividade02_2_ContadorApplet2 extends Applet implements ActionList
 		g.clearRect(0, 0, 1000, 400);
 		g.setFont(fonte);
 		g.drawString("Fio 1: " + Integer.toString(c1.getContador()), 40, 100);
-		g.drawString("Fio 2: " + Integer.toString(c2.getContador()), 40, 150);
+		g.drawString("Fio 2: " + Integer.toString(c1.getContador()), 40, 150);
 	}
 
 	// Listerner
@@ -100,9 +99,15 @@ public class Actividade02_2_ContadorApplet2 extends Applet implements ActionList
 	}
 
 	// paramos os fíos
-	// repara que sta non é forma axeitada de para un fío porque non liberaría o control dos obxectos que tivese bloqueados
+	// referenciámolos a nulos para que sexa unha parada segura 
 	public void stop() {
-	
+		c1 = null;
+		c2 = null;
+		
+		// outra forma é seguir este procedemento:
+		// 1ª declarar s unha variable booleana pararFio = false;
+		// 2ª no run while (!pararFio) {...}
+		// 3ª no stop pararFio = true;
 	}
-
+	
 }
