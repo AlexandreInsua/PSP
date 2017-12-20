@@ -4,48 +4,38 @@ package cap02.Repasopdf;
 public class OlaAdeus {
 	public static void main(String[] args) {
 		OlaAdeus oa = new OlaAdeus();
-		Ola o = new Ola(oa);
-		Adeus a = new Adeus(oa);
+		Hilo h1 = new Hilo(oa);
+		Hilo h2 = new Hilo(oa);
 
-		o.start();
-		a.start();
+		h1.start();
+		h2.start();
 	}
 
 	boolean escritoOla = false;
 
-	synchronized public void escribirOla() throws InterruptedException {
-		if (escritoOla) {
-			wait();
-		} else {
+	synchronized public void escribir() throws InterruptedException {
+		if (!escritoOla) {
 			System.out.println("Ola");
 			escritoOla = true;
-			notify();
-		}
-	}
-
-	synchronized public void escribirAdeus() throws InterruptedException {
-		if (escritoOla) {
+		} else {
 			System.out.println("Adeus");
 			escritoOla = false;
-			notify();
-		} else {
-		
 		}
 	}
 
 }
 
-class Ola extends Thread {
+class Hilo extends Thread {
 	OlaAdeus olaAdeus;
 
-	Ola(OlaAdeus o) {
+	Hilo(OlaAdeus o) {
 		olaAdeus = o;
 	}
 
 	public void run() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				olaAdeus.escribirOla();
+				olaAdeus.escribir();
 				sleep(500);
 			}
 		} catch (InterruptedException e) {
@@ -54,7 +44,7 @@ class Ola extends Thread {
 	}
 }
 
-class Adeus extends Thread {
+/*class Adeus extends Thread {
 	OlaAdeus olaAdeus;
 
 	Adeus(OlaAdeus o) {
@@ -64,15 +54,11 @@ class Adeus extends Thread {
 	public void run() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				olaAdeus.escribirAdeus();
+				olaAdeus.escribir();
 				sleep(500);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-}
-
-class Test {
-
-}
+}*/

@@ -15,7 +15,7 @@ public class Re04_Pizarra {
 	}
 
 	public synchronized void eAdeus() {
-		while (escritoOla == false) {
+		while (escritoOla == true) {
 			// aínda non escribiu ola,
 			// polo que non pode escribir adeus
 			try {
