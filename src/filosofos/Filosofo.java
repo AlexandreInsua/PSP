@@ -33,13 +33,21 @@ public class Filosofo extends Thread {
 		System.out.println("O filosofo " + nome + " acaba de comer");
 	}
 
-	public void ciclo()
-	{
+	public void ciclo() throws InterruptedException 	{
 		pensa(id,tempo_pensando);
 		mesa.pideTenedores(id);
 		come(id, tempo_comendo);
 		mesa.cedeTenedores(id);
 	}
 	
-	
+	public void run() {
+		boolean para = false;
+			while  (!para) {
+				try {
+					ciclo();
+				} catch (InterruptedException e) {
+					para = true;
+				}
+			}
+	}
 }

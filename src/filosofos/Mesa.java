@@ -2,8 +2,14 @@ package filosofos;
 
 public class Mesa {
 	int numFilosofos;
+	protected boolean[] comendo;
 
-	public Mesa() {
+	public Mesa(int n) {
+		numFilosofos = n;
+		comendo = new boolean[n];
+		for (int i = 0; i < n; i++) {
+			comendo[i] = false;
+		}
 
 	}
 
@@ -23,8 +29,7 @@ public class Mesa {
 			} else {
 				res.append(',');
 			}
-
-		}
+		res.append(comendo[i]);}
 		res.append(')');
 		return res.toString();
 	}
