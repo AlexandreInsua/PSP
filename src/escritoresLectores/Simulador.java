@@ -1,4 +1,4 @@
-package avaliacion2;
+package escritoresLectores;
 
 public class Simulador {
 	private static int numUsuario = -1;
@@ -14,9 +14,10 @@ public class Simulador {
 		Monitor monitor = new Monitor();
 		GeneradorLectores generaLectores = new GeneradorLectores(tllegadaLec, tleyendo, tMax, 1111, monitor);
 		GeneradorEscritores generaEscritores = new GeneradorEscritores(tllegadaEscr, tescribiendo, tMax, 3333, monitor);
-
-		generaLectores.start();
+		
 		generaEscritores.start();
+		generaLectores.start();
+	
 		horaInicio = System.currentTimeMillis();
 		Thread.sleep(tMax * 1000);
 		generaLectores.interrupt();

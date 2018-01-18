@@ -1,4 +1,4 @@
-package avaliacion2;
+package escritoresLectores;
 
 public class GeneradorEscritores extends Thread {
 	private double tMedioLlegada;

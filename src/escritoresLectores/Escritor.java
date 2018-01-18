@@ -1,4 +1,4 @@
-package avaliacion2;
+package escritoresLectores;
 
 public class Escritor extends Thread {
 	private int id;
@@ -22,7 +22,7 @@ public class Escritor extends Thread {
 	public void run() {
 		boolean escribindo = false;
 		try {
-			System.out.println("Escritor " + id + "quere escribir");
+			System.out.println("Escritor " + id + " quere escribir");
 			monitor.permisoEscribir(); 
 			escribindo = true;
 			escribir();

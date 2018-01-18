@@ -1,4 +1,4 @@
-package avaliacion2;
+package escritoresLectores;
 
 public class Lector extends Thread {
 		private int id;

@@ -1,4 +1,4 @@
-package avaliacion2;
+package escritoresLectores;
 
 public class Monitor {
 	private int escrEsperando; // numero escritores agardando;
@@ -17,7 +17,7 @@ public class Monitor {
 	}
 
 	// mentres houber un escritor lendo ou esperando para escribir, os lectores espreas
-	public void permisoLer() throws InterruptedException {
+	public synchronized void permisoLer() throws InterruptedException {
 		// TODO Auto-generated method stub
 		while (numEscr > 0 || escrEsperando > 0) {
 			wait();
@@ -25,7 +25,7 @@ public class Monitor {
 		numLect++;
 	}
 
-	public void finLer() {
+	public synchronized void finLer() {
 		// TODO Auto-generated method stub
 		numLect--;
 		notifyAll();
@@ -35,13 +35,13 @@ public class Monitor {
 	// mentres haxa lectores agarda, logo escribe
 	public synchronized void permisoEscribir() throws InterruptedException {
 		escrEsperando++;
-		while (numLect > 0) {
+		while (numLect > 0 || numEscr >0) {
 			wait();
 		}
 		numEscr++;
 	}
 
-	public void finEscribir() {
+	public synchronized void finEscribir() {
 		escrEsperando--;
 		numEscr--;
 
