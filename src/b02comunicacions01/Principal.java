@@ -1,4 +1,4 @@
-package b02comunicacións01;
+package b02comunicacions01;
 
 import java.io.BufferedReader;
 import java.io.IOException;
