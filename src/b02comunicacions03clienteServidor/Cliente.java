@@ -7,7 +7,11 @@ import java.net.Socket;
 
 public class Cliente {
 public static void main(String[] args) {
-	String host = "192.168.1.150";  // Aaroon
+	String host = "192.168.1.41"; // cristian
+	
+	// String host = "192.168.1.112"; // Araceli
+	
+	// String host = "192.168.1.150";  // Aaroon
 	//String host = "localhost";
 	int porto = 6000;
 	
