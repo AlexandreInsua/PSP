@@ -15,7 +15,9 @@ public class Cliente {
 		// String host = "192.168.1.112"; // Araceli
 
 		// String host = "192.168.1.150"; // Aaroon
+		
 		// String host = "localhost";
+		
 		int porto = 6000;
 		int clienteContador = 1;
 		while (true) {
