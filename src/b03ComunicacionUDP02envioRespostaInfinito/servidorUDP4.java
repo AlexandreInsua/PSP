@@ -1,4 +1,4 @@
-package b03ComunicacionUDP02.copy.copy;
+package b03ComunicacionUDP02envioRespostaInfinito;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,7 +6,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class servidorUDP3 {
+/**
+ * Servidor UDP que recibe un número de un único cliente e devolve ese número elevado
+ * ao cubo.
+ *
+ */
+public class servidorUDP4 {
 
 	public static void main(String args[]) throws Exception {
 
@@ -45,7 +50,7 @@ public class servidorUDP3 {
 			 */
 
 			cadena = calcularCubo(cadena);
-			cadena = "Numero elevado ao cubo: " + cadena;
+			cadena = "Numero elevado al cubo: " + cadena;
 
 			enviados = cadena.getBytes();
 

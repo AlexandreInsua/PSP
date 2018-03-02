@@ -22,11 +22,12 @@ public class Cliente7 {
 		System.out.print("Introduce número: ");
 		cadena = in.readLine();// lectura por teclado
 		while (cadena != null) {
-			System.out.print("Introduce cadena: ");
+			
 			fsalida.println(cadena); // envio cadena al servidor
 			resposta = fentrada.readLine(); // recibo cadena del servidor
-			System.out.println("Número ao cubo: " + resposta);
+			System.out.println("Número al cubo: " + resposta);
 			
+			System.out.print("Introduce otro número: ");
 			cadena = in.readLine();// lectura por teclado
 		}
 		fsalida.close();

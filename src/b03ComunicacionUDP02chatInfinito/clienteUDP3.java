@@ -1,4 +1,4 @@
-package b03ComunicacionUDP02.copy;
+package b03ComunicacionUDP02chatInfinito;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,6 +6,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+/**
+ * Clase Cliente UDP que envía unha mensaxe e recibe 
+ * do servidor. Funciona indefinidamente. 
+ *
+ */
 public class clienteUDP3 {
 
 	public static void main(String[] args) throws Exception {
@@ -17,8 +22,8 @@ public class clienteUDP3 {
 		byte[] enviados = new byte[1024];
 		byte[] recibidos = new byte[1024];
 
-		// InetAddress IPServidor = InetAddress.getLocalHost();
-		InetAddress IPServidor = InetAddress.getByName("192.168.1.147");
+		InetAddress IPServidor = InetAddress.getLocalHost();
+		// InetAddress IPServidor = InetAddress.getByName("192.168.1.147");
 		int puerto = 9876;
 		// Pide mensaxe
 		System.out.println("Introduce un mensaje: ");

@@ -1,4 +1,4 @@
-package b03ComunicacionUDP02.copy;
+package b03ComunicacionUDP02chatInfinito;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,6 +6,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+/**
+ * Server UDP que recibe unha mensaxe do cliente e envia unha resposta introducida
+ * manualmente. Funciona indefinidamente para un cliente.
+ *
+ */
 public class servidorUDP3 {
 
 	public static void main(String args[]) throws Exception {
@@ -38,7 +43,7 @@ public class servidorUDP3 {
 			enviados = mayuscula.getBytes();*/
 			
 			
-			System.out.println("Introduza resposta: ");
+			System.out.println("Introduzca respuesta: ");
 			String cadea = in.readLine();
 			enviados = cadea.getBytes();
 			

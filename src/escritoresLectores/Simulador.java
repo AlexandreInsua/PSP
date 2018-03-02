@@ -27,6 +27,6 @@ public class Simulador {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		Simulador s = new Simulador(3, 3, 1, 2, 30);
+		Simulador s = new Simulador(2, 8, 1, 2, 30);
 	}
 }

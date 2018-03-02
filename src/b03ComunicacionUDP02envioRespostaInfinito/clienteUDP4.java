@@ -1,4 +1,4 @@
-package b03ComunicacionUDP02.copy.copy;
+package b03ComunicacionUDP02envioRespostaInfinito;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,7 +6,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class clienteUDP3 {
+/**
+ * Clase Cliente UDP que envía un número a un Servidor UDP e recibe ese mesmo
+ * número elevado ao cubo. Funciona indefinidamente.
+ *
+ */
+public class clienteUDP4 {
 
 	public static void main(String[] args) throws Exception {
 		// fluxo de entrada
@@ -17,8 +22,8 @@ public class clienteUDP3 {
 		byte[] enviados = new byte[1024];
 		byte[] recibidos = new byte[1024];
 
-		 //InetAddress IPServidor = InetAddress.getLocalHost();
-	InetAddress IPServidor = InetAddress.getByName("192.168.1.147");
+		 InetAddress IPServidor = InetAddress.getLocalHost();
+
 		int puerto = 9876;
 		// Pide mensaxe
 		System.out.println("Introduce un numero: ");
