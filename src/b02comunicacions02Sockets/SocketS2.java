@@ -6,6 +6,10 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Clase cliente
+ */
+
 public class SocketS2 {
 	public static void main(String[] args) {
 		String host = "localhost";
@@ -26,7 +30,7 @@ public class SocketS2 {
 			e.printStackTrace();
 
 		} catch (ConnectException ce) {
-	
+
 			ce.printStackTrace();
 
 		} catch (IOException e) {

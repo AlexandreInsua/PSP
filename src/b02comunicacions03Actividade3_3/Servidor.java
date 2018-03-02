@@ -8,7 +8,11 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class EjemploServidor {
+/**
+ * Clase Server que automaticamente recibe saudos e devolve resposta a infinitos clientes.
+ *
+ */
+public class Servidor {
 
 	public static void main(String[] args) throws IOException {
 		int numeroPuerto = 6000;// Puerto
