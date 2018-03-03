@@ -6,8 +6,8 @@ public class Monitor {
 	private int numEscr; // número escritores lendo
 
 	/*
-	 * escrEsperando >= numEscr 0 <= numEscr <= 1 numLect=>0 numlect > 0 ---> numEsc
-	 * = 0
+	 * escrEsperando >= numEscr 0 <= numEscr <= 1 numLect=>0 numlect > 0 --->
+	 * numEsc = 0
 	 */
 
 	public Monitor() {
@@ -16,9 +16,27 @@ public class Monitor {
 		numEscr = 0;
 	}
 
-	// mentres houber un escritor lendo ou esperando para escribir, os lectores espreas
+	
+	
+	public int getEscrEsperando() {
+		return escrEsperando;
+	}
+
+
+
+	public void setEscrEsperando(int escrEsperando) {
+		this.escrEsperando = escrEsperando;
+	}
+
+
+
+	// mentres houber un escritor lendo ou esperando para escribir, os lectores
+	// espreas
 	public synchronized void permisoLer() throws InterruptedException {
-		// TODO Auto-generated method stub
+		// este if dálle prioridade aos escritores 
+		/*if (numEscr==0){
+			wait();
+		}*/
 		while (numEscr > 0 || escrEsperando > 0) {
 			wait();
 		}
@@ -26,31 +44,30 @@ public class Monitor {
 	}
 
 	public synchronized void finLer() {
-		// TODO Auto-generated method stub
 		numLect--;
-		notifyAll();
-	
+		if (numLect == 0) {
+			notifyAll();
+		}
+
 	}
-	
+
 	// mentres haxa lectores agarda, logo escribe
 	public synchronized void permisoEscribir() throws InterruptedException {
-		escrEsperando++;
-		while (numLect > 0 || numEscr >0) {
+		escrEsperando--;
+		while (numLect > 0 || numEscr > 0) {
 			wait();
 		}
 		numEscr++;
 	}
 
 	public synchronized void finEscribir() {
-		escrEsperando--;
 		numEscr--;
-
+		notifyAll();
 	}
 
 	@Override
 	public String toString() {
-		return "nl:" + numLect + ", ne:" + numEscr + ", ee:" + escrEsperando ;
+		return "nl:" + numLect + ", ne:" + numEscr + ", ee:" + escrEsperando;
 	}
 
-	
 }

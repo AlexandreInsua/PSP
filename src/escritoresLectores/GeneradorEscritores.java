@@ -29,6 +29,7 @@ public class GeneradorEscritores extends Thread {
 				Escritor escritor = new Escritor(Simulador.sigUsuario(), tEscribiendo, monitor);
 				System.out.println("Generado " + escritor);
 				escritor.start();
+				monitor.setEscrEsperando(monitor.getEscrEsperando() + 1);
 			}
 		} catch (InterruptedException e) {
 		}
