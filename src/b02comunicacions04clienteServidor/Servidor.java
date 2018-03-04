@@ -8,6 +8,9 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Clase server preparada para enviar unha única resposta para dous clientes
+ */
 public class Servidor {
 
 	public static void main(String[] args) {

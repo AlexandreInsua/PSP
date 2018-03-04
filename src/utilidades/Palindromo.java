@@ -2,16 +2,27 @@ package utilidades;
 
 public class Palindromo {
 
-	public boolean espalindromo(String cadena) {
+	public static void main(String[] args) {
+		
+		System.out.println(espalindromo("A torre da derrota"));
+		System.out.println(espalindromo("Esta non o é"));
+	}
+	
+	
+	static public boolean espalindromo(String cadena) {
+		cadena = cadena.toLowerCase();
 		boolean valor = true;
 		int i,j, k;
 		String cadena2 = "";
+		
 		// quitamos los espacios
 		for (i = 0; i < cadena.length(); i++) {
 			if (cadena.charAt(i) != ' ')
 				cadena2 += cadena.charAt(i);
 		}
+		
 		// volvemos a asignar variables
+		
 		cadena = cadena2;
 		k = cadena.length();
 		// comparamos cadenas
